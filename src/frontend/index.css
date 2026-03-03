@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* RSA Total Solution — Dark Luxury Palette */
+    /* Deep charcoal backgrounds with warm amber/gold wood-tone accents */
+
+    --background: 0.12 0.008 55;
+    --foreground: 0.95 0.02 75;
+
+    --card: 0.16 0.01 55;
+    --card-foreground: 0.92 0.02 75;
+
+    --popover: 0.18 0.01 55;
+    --popover-foreground: 0.92 0.02 75;
+
+    /* Gold/amber primary */
+    --primary: 0.72 0.12 68;
+    --primary-foreground: 0.1 0.01 55;
+
+    /* Warm stone secondary */
+    --secondary: 0.22 0.015 60;
+    --secondary-foreground: 0.85 0.02 72;
+
+    --muted: 0.2 0.01 58;
+    --muted-foreground: 0.58 0.025 62;
+
+    /* Warm amber accent */
+    --accent: 0.65 0.1 65;
+    --accent-foreground: 0.1 0.005 55;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.28 0.02 58;
+    --input: 0.22 0.015 58;
+    --ring: 0.72 0.12 68;
+
+    --chart-1: 0.72 0.12 68;
+    --chart-2: 0.65 0.09 72;
+    --chart-3: 0.55 0.07 65;
+    --chart-4: 0.82 0.09 80;
+    --chart-5: 0.45 0.06 60;
+
+    --sidebar: 0.14 0.008 55;
+    --sidebar-foreground: 0.92 0.02 75;
+    --sidebar-primary: 0.72 0.12 68;
+    --sidebar-primary-foreground: 0.1 0.01 55;
+    --sidebar-accent: 0.22 0.015 60;
+    --sidebar-accent-foreground: 0.85 0.02 72;
+    --sidebar-border: 0.28 0.02 58;
+    --sidebar-ring: 0.72 0.12 68;
+
+    /* Custom RSA tokens */
+    --gold: 0.72 0.12 68;
+    --gold-light: 0.82 0.1 72;
+    --gold-dark: 0.55 0.1 62;
+    --charcoal: 0.12 0.008 55;
+    --charcoal-mid: 0.18 0.01 55;
+    --charcoal-light: 0.26 0.015 58;
+    --cream: 0.95 0.02 78;
+    --warm-gray: 0.58 0.025 62;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle grain texture for warmth — mimics paper/linen */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+
+  .gold-divider {
+    @apply w-16 h-px bg-primary mb-6;
+  }
+
+  .gold-divider-center {
+    @apply w-16 h-px bg-primary mb-6 mx-auto;
+  }
+
+  .label-text {
+    @apply text-xs tracking-[0.2em] uppercase text-primary font-medium;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight;
+    letter-spacing: -0.02em;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:border-primary/40 hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+
+  .bg-charcoal {
+    background-color: oklch(var(--charcoal));
+  }
+
+  .bg-charcoal-mid {
+    background-color: oklch(var(--charcoal-mid));
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  /* Portfolio image hover */
+  .portfolio-card .portfolio-img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .portfolio-card:hover .portfolio-img {
+    transform: scale(1.06);
+  }
+}
